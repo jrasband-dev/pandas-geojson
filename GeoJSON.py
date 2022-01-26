@@ -1,4 +1,6 @@
 import geojson
+import json
+from urllib.request import urlopen
 
 class GeoJSON():
     def to_geojson(self, df, lat, lon, properties):
@@ -23,6 +25,32 @@ class GeoJSON():
 
         return geojson
 
-    def write_geojson(self,df,filename):
+    def write_geojson(self, geo_json, filename):
         with open(filename, 'w', encoding='utf8') as f:
-            geojson.dump(df, f, sort_keys=True, ensure_ascii=False)
+            geojson.dump(geo_json, f, sort_keys=True, ensure_ascii=False)
+            
+            
+    def filter_geojson(self,geo_json, filter_list, property_key):
+        filtered = []
+        for ft in geo_json['features']:
+            if ft['properties'][f'{property_key}'] in filter_list:
+                filtered.append(ft)
+        # print(len(filtered))
+
+        newgeojson = {}
+        newgeojson['type'] = 'FeatureCollection'
+        newgeojson['features'] = filtered
+        newgeojson = json.dumps(newgeojson)
+
+        return newgeojson
+
+    def read_geojson(self,filename):
+        with open(f'{filename}') as response:
+            geo_json = json.load(response)
+        return geo_json
+
+    def read_geojson_url(self, url):
+        with urlopen(f'{url}') as response:
+            geo_json = json.load(response)
+
+        return geo_json
