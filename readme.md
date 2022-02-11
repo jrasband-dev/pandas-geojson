@@ -1,9 +1,9 @@
 # pandas-geojson
-This library contains: 
-* Convert DataFame to GeoJSON
-* Write GeoJSON to convert GeoJSON objeccts into geojson files.
+This library contains functions that: 
+* Convert pandas DataFame to GeoJSON
+* Write GeoJSON files
 * Open GeoJSON options from file or url
-* Filter GeoJSON
+* Filter GeoJSON based on list criteria
 
 ```
 pip install pandas-geojson
@@ -12,7 +12,7 @@ pip install pandas-geojson
 ## Converting DataFrames to GeoJSON
 INPUT
 ```
-from pandas_geojson.GeoJSON import GeoJSON
+from pandas_geojson import GeoJSON
 import pandas as pd
 gjson = GeoJSON()
 data = pd.read_csv('Test.csv')
@@ -52,6 +52,9 @@ gjson.write_geojson(geo_json, 'Test.geojson')
 ## Filtering GeoJSON
 Sometimes you want to filter existing GeoJSON datasets to only include specific locations. This function accomplishes that. 
 ```
+import pandas as pd
+from pands_geojson import GeoJSON
+gjson = GeoJSON()
 data = pd.read_csv('filter.csv')
 lid_zips = data['FIPS'].astype(str).to_list()
 counties = gjson.read_geojson('FIPS_Counties.geojson')

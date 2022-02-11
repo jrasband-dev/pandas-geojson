@@ -1,2 +1,9 @@
-convert.py
+Examples/convert.py
+Examples/filter.py
 .idea
+*.geojson
+venv
+__pycache__
+dist
+build
+pandas_geojson.egg-info
