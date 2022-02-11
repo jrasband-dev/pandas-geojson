@@ -1,4 +1,3 @@
-import geojson
 import json
 from urllib.request import urlopen
 
@@ -27,7 +26,7 @@ class GeoJSON():
 
     def write_geojson(self, geo_json, filename):
         with open(filename, 'w', encoding='utf8') as f:
-            geojson.dump(geo_json, f, sort_keys=True, ensure_ascii=False)
+            f.write(geo_json)
             
             
     def filter_geojson(self,geo_json, filter_list, property_key):
