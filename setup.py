@@ -19,7 +19,6 @@ setup(
     author_email="datacraftsmansguild@gmail.com",
     license="MIT",
     classifiers=[
-        "License :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
     ],
