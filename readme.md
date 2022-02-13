@@ -1,4 +1,4 @@
-![](static/pandasgeojson.png)
+![](https://raw.githubusercontent.com/jaycroft/pandas-geojson/master/static/pandasgeojson.png)
 
 ---
 
