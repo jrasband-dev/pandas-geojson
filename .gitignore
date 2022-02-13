@@ -1,7 +1,6 @@
-Examples/convert.py
-Examples/filter.py
+datasets/convert.py
+datasets/filter.py
 .idea
-*.geojson
 venv
 __pycache__
 dist

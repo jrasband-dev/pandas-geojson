@@ -1,4 +1,4 @@
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 
 from pandas_geojson.pandas_geojson import (
     read_geojson,
@@ -14,5 +14,4 @@ __all__ =[
     "write_geojson",
     "filter_geojson",
     "to_geojson",
-
 ]

@@ -19,9 +19,10 @@ def to_geojson(df, lat, lon, properties):
 
     return geojson
 
-def write_geojson(geo_json, filename):
+def write_geojson(geo_json, filename, indent=None):
+    geo_json_data = json.dumps(geo_json, indent=indent)
     with open(filename, 'w', encoding='utf8') as f:
-        f.write(geo_json)
+        f.write(geo_json_data)
 
 
 def filter_geojson(geo_json, filter_list, property_key):
