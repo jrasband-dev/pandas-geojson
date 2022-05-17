@@ -31,7 +31,7 @@ OUTPUT
 2  Random  49.768477 -112.903907          star      #C91313
 3  Random  45.768477 -110.903907          star      #C91313
 ```
-Definie your variable and call the to_geojson function. You will need to pass your dataframe object and specify the lat and long cordinate columns. You can also pass a list with the properties you want to include (essentially the meta data of the coordinates).
+Define your variable and call the to_geojson function. You will need to pass your dataframe object and specify the lat and long cordinate columns. You can also pass a list with the properties you want to include (essentially the meta data of the coordinates).
 
 
 INPUT
