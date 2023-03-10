@@ -35,7 +35,6 @@ def filter_geojson(geo_json, filter_list, property_key):
     newgeojson = {}
     newgeojson['type'] = 'FeatureCollection'
     newgeojson['features'] = filtered
-    newgeojson = json.dumps(newgeojson)
 
     return newgeojson
 
