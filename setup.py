@@ -10,13 +10,13 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="pandas_geojson",
-    version="1.2.0",
+    version="2.0.0",
     description="Convert Pandas Dataframe to GeoJSON",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/jaycroft/pandas-geojson",
-    author="Jay",
-    author_email="datacraftsmansguild@gmail.com",
+    url="https://github.com/jrasband-dev/pandas-geojson",
+    author="Jayden Rasband",
+    author_email="jayden.rasband@gmail.com",
     license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -1,17 +1,22 @@
-__version__ = "1.2.0"
+__version__ = "2.0.0"
 
-from pandas_geojson.pandas_geojson import (
+from pandas_geojson.core import(
+    GeoJSON
+
+)
+
+
+from pandas_geojson.io import (
+    save_geojson,
     read_geojson,
     read_geojson_url,
-    write_geojson,
-    filter_geojson,
-    to_geojson,
+
 )
 
 __all__ =[
+    "GeoJSON",
     "read_geojson",
     "read_geojson_url",
-    "write_geojson",
-    "filter_geojson",
-    "to_geojson",
+    "save_geojson",
+
 ]
