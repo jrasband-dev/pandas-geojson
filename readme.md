@@ -1,6 +1,11 @@
 ![](https://raw.githubusercontent.com/jrasband-dev/pandas-geojson/master/static/pandasgeojson.png)
 
 ---
+![PyPI - Version](https://img.shields.io/pypi/v/pandas-geojson)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pandas-geojson)
+![PyPI - License](https://img.shields.io/pypi/l/pandas-geojson)
+![Libraries.io SourceRank](https://img.shields.io/librariesio/sourcerank/pypi/pandas-geojson)
+
 
 # Getting Started
 Install the latest version of pandas-geojson using pip.
