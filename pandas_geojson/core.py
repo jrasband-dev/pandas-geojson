@@ -48,7 +48,11 @@ class GeoJSON:
 
     @classmethod
     def from_dict(cls, data):
-        features = [GeoJSONFeature(**feature) for feature in data['features']]
+        features = []
+        for feature_data in data['features']:
+            properties = feature_data.get('properties', {})
+            feature = GeoJSONFeature(type='Feature', geometry=feature_data['geometry'], properties=properties)
+            features.append(feature)
         return cls(type=data['type'], features=features)
     
     @classmethod
