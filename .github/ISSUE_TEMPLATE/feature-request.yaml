@@ -1,6 +1,7 @@
 name: '✨ Feature request'
 description: Suggest a new feature or enhancement.
-labels: [New Feature]
+title: [New Feature]
+labels: [enhancement]
 
 body:
   - type: textarea
