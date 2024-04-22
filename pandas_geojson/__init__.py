@@ -1,7 +1,13 @@
 __version__ = "2.0.1"
 
 from pandas_geojson.core import(
-    GeoJSON
+    GeoJSON,
+    Point,
+    MultiPoint,
+    LineString,
+    MultiLineString,
+    Polygon,
+    MultiPolygon
 
 )
 
@@ -18,5 +24,10 @@ __all__ =[
     "read_geojson",
     "read_geojson_url",
     "save_geojson",
-
+    "Point",
+    "MultiPoint",
+    "LineString",
+    "MultiLineString",
+    "Polygon",
+    "MultiPolygon"
 ]

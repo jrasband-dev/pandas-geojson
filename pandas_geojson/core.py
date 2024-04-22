@@ -1,12 +1,186 @@
 from dataclasses import dataclass, field
-from typing import List, Any, Dict
+from typing import List, Any, Dict, Union
 import pandas as pd
 import json
 
 @dataclass
+class Point:
+    type: str = 'Point'
+    geometry: List[float] = field(default_factory=list)
+    properties: Dict[str, Any] = field(default_factory=dict)
+
+
+    def __repr__(self):
+        return json.dumps(self.to_dict(), indent=4)
+
+    def __post_init__(self):
+        self.validate()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'type': self.type,
+            'geometry': self.geometry,
+            'properties': self.properties
+        }
+
+    def validate(self):
+        if self.type != "Point":
+            raise ValueError("Type must be 'Point' for Point geometry.")
+        if len(self.geometry) != 2:
+            raise ValueError("Point must have a single pair of coordinates (latitude and longitude).")
+        if not all(isinstance(coord, (int, float)) for coord in self.geometry):
+            raise ValueError("Coordinates must be numerical values.")
+
+@dataclass
+class MultiPoint:
+    type: str = 'MultiPoint'
+    geometry: List[List[float]] = field(default_factory=list)
+    properties: Dict[str, Any] = field(default_factory=dict)
+    
+    def __repr__(self):
+        return json.dumps(self.to_dict(), indent=4)
+
+    def __post_init__(self):
+        self.validate()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'type': self.type,
+            'geometry': self.geometry,
+            'properties': self.properties
+        }    
+
+    def validate(self):
+        if self.type != "MultiPoint":
+            raise ValueError("Type must be 'MultiPoint' for MultiPoint geometry.")
+        if not isinstance(self.geometry, list) or len(self.geometry) < 2 or not all(isinstance(coord, list) and len(coord) == 2 for coord in self.geometry):
+            raise ValueError("MultiPoint must have at least two pairs of coordinates.")
+
+@dataclass
+class LineString:
+    type: str = 'LineString'
+    geometry: List[List[float]] = field(default_factory=list)
+    properties: Dict[str, Any] = field(default_factory=dict)
+    
+
+    def __repr__(self):
+        return json.dumps(self.to_dict(), indent=4)
+
+    def __post_init__(self):
+        self.validate()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'type': self.type,
+            'geometry': self.geometry,
+            'properties': self.properties
+        }    
+
+    def validate(self):
+        if self.type != "LineString":
+            raise ValueError("Type must be 'LineString' for LineString geometry.")
+        if not isinstance(self.geometry, list) or len(self.geometry) < 2 or not all(isinstance(coord, list) and len(coord) == 2 for coord in self.geometry):
+            raise ValueError("LineString must have a list of coordinate pairs with at least two coordinates.")
+
+@dataclass
+class MultiLineString:
+    type: str = 'MultiLineString'
+    geometry: List[List[List[float]]] = field(default_factory=list)
+    properties: Dict[str, Any] = field(default_factory=dict)
+    
+    def __repr__(self):
+        return json.dumps(self.to_dict(), indent=4)
+
+    def __post_init__(self):
+        self.validate()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'type': self.type,
+            'geometry': self.geometry,
+            'properties': self.properties
+        }    
+
+    def validate(self):
+        if self.type != "MultiLineString":
+            raise ValueError("Type must be 'MultiLineString' for MultiLineString geometry.")
+        if len(self.geometry) < 2:
+            raise ValueError("MultiLineString must have at least two LineString geometries.")
+        for line_string in self.geometry:
+            if len(line_string) < 2:
+                raise ValueError("Each LineString in MultiLineString must have at least two coordinates.")
+            for point in line_string:
+                if len(point) != 2:
+                    raise ValueError("Each point in MultiLineString geometry must have exactly two coordinates (longitude and latitude).")
+
+@dataclass
+class Polygon:
+    type: str = 'Polygon'
+    geometry: List[List[List[float]]] = field(default_factory=list)
+    properties: Dict[str, Any] = field(default_factory=dict)
+    
+
+    def __repr__(self):
+        return json.dumps(self.to_dict(), indent=4)
+
+    def __post_init__(self):
+        self.validate()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'type': self.type,
+            'geometry': self.geometry,
+            'properties': self.properties
+        }    
+
+    def validate(self):
+        if self.type != "Polygon":
+            raise ValueError("Type must be 'Polygon' for Polygon geometry.")
+        if len(self.geometry) < 4:
+            raise ValueError("Polygon must have at least four coordinates (outer ring).")
+        for coords in self.geometry:
+            if len(coords) < 2:
+                raise ValueError("Each coordinate sublist must contain at least two elements.")
+        if self.geometry[0] != self.geometry[-1]:
+            raise ValueError("First and last points of the geometry must be the same.")
+
+@dataclass
+class MultiPolygon:
+    type: str = 'MultiPolygon'
+    geometry: List[List[List[List[float]]]] = field(default_factory=list)
+    properties: Dict[str, Any] = field(default_factory=dict)
+    
+
+    def __repr__(self):
+        return json.dumps(self.to_dict(), indent=4)
+
+    def __post_init__(self):
+        self.validate()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            'type': self.type,
+            'geometry': self.geometry,
+            'properties': self.properties
+        }   
+
+    def validate(self):
+        if self.type != "MultiPolygon":
+            raise ValueError("Type must be 'MultiPolygon' for MultiPolygon geometry.")
+        if len(self.geometry) < 2:
+            raise ValueError("MultiPolygon must have at least two polygons.")
+
+        for polygon in self.geometry:
+            if len(polygon) < 1:
+                raise ValueError("Each Polygon in MultiPolygon must have at least one ring.")
+            for ring in polygon:
+                if len(ring) < 4 or ring[0] != ring[-1]:
+                    raise ValueError("Each ring in MultiPolygon must have at least four coordinates and be closed.")
+
+@dataclass
 class GeoJSONFeature:
     type: str
-    geometry: Dict[str, Any]
+    geometry: Dict[str, Any] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
 
 @dataclass
@@ -15,10 +189,17 @@ class GeoJSON:
     Main Object for GeoJSON data. 
     '''
     type: str = 'FeatureCollection'
-    features: List[GeoJSONFeature] = field(default_factory=list)
+    features: List[Union[GeoJSONFeature,Point,MultiPoint,LineString,MultiLineString,Polygon,MultiPolygon]] = field(default_factory=list)
 
     def __repr__(self):
         return json.dumps(self.to_dict(), indent=4)
+    
+    def add_features(self, feature_list: List[Union[GeoJSONFeature,Point,MultiPoint,LineString,MultiLineString,Polygon,MultiPolygon]]):
+        '''
+        Add Multiple Features at once
+        '''
+
+        self.features.extend(feature_list)
 
     def add_feature(self, feature_type: str, coordinates: Any = [], properties: dict = {}):
         '''
