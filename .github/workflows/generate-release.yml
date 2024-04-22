@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch: # This allows manual triggering
 
 jobs:
   release-drafter:
