@@ -1,0 +1,37 @@
+_extends: jrasband-dev:.github/release-drafter.yml
+
+name-template: pandas-geojson $RESOLVED_VERSION
+tag-template: $RESOLVED_VERSION
+tag-prefix: 
+
+include-labels:
+  - python
+
+version-resolver:
+  minor:
+    labels:
+      - breaking
+      - breaking python
+  default: patch
+
+categories:
+  - title: 🏆 Highlights
+    labels: highlight
+  - title: 💥 Breaking changes
+    labels:
+      - breaking
+      - breaking python
+  - title: ⚠️ Deprecations
+    labels: deprecation
+  - title: 🚀 Performance improvements
+    labels: performance
+  - title: ✨ Enhancements
+    labels: enhancement
+  - title: 🐞 Bug fixes
+    labels: fix
+  - title: 📖 Documentation
+    labels: documentation
+  - title: 📦 Build system
+    labels: build
+  - title: 🛠️ Other improvements
+    labels: internal
