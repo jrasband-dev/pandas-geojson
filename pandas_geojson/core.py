@@ -11,6 +11,9 @@ class GeoJSONFeature:
 
 @dataclass
 class GeoJSON:
+    '''
+    Main Object for GeoJSON data. 
+    '''
     type: str = 'FeatureCollection'
     features: List[GeoJSONFeature] = field(default_factory=list)
 
@@ -18,6 +21,9 @@ class GeoJSON:
         return json.dumps(self.to_dict(), indent=4)
 
     def add_feature(self, feature_type: str, coordinates: Any = [], properties: dict = {}):
+        '''
+        Allows you to add features to the GeoJSON object.
+        '''
         geometry = {'type': feature_type, 'coordinates': coordinates}
         feature = GeoJSONFeature(type='Feature', geometry=geometry, properties=properties)
         self.features.append(feature)
