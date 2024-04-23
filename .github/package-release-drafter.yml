@@ -14,7 +14,7 @@ version-resolver:
   default: patch
 
 
-template: 
+categories: 
   - title: 🏆 Highlights
     labels: highlight
   - title: 💥 Breaking changes
@@ -27,7 +27,7 @@ template:
     labels: performance
   - title: ✨ Enhancements
     labels: enhancement
-  - title: 🐞 Bug fixes
+  - title: 🕷 Bug fixes
     labels: fix
   - title: 📖 Documentation
     labels: documentation
