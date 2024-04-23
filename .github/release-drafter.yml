@@ -1,35 +1,55 @@
-name-template: v$RESOLVED_VERSION
-tag-template: v$RESOLVED_VERSION
+exclude-labels:
+  - skip changelog
+  - release
 
-include-labels:
-  - python
+change-template: '- $TITLE (#$NUMBER)'
+change-title-escapes: '\<*_&'
+replacers:
+  # Remove conventional commits from titles
+  - search: '/- (build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)(\(.*\))?(\!)?\: /g'
+    replace: '- '
 
-version-resolver:
-  minor:
-    labels:
-      - breaking
-      - breaking python
-  default: patch
+autolabeler:
 
+  - label: python
+    title:
+      # Example: feat(python): ...
+      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)(\(.*python.*\))?\!?\: /'
+  - label: breaking
+    title:
+      # Example: feat!: ...
+      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)(\(.*\))?\!\: /'
+  - label: breaking python
+    title:
+      # Example: feat(python!): ...
+      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)\(.*python\!.*\)\: /'
+  - label: build
+    title:
+      - '/^build/'
+  - label: internal
+    title:
+      - '/^(chore|ci|refactor|test)/'
+  - label: deprecation
+    title:
+      - '/^depr/'
+  - label: documentation
+    title:
+      - '/^docs/'
+  - label: enhancement
+    title:
+      - '/^feat/'
+  - label: fix
+    title:
+      - '/^fix/'
+  - label: performance
+    title:
+      - '/^perf/'
+  - label: release
+    title:
+      - '/^release/'
 
 template: |
-  - title: 🏆 Highlights
-    labels: highlight
-  - title: 💥 Breaking changes
-    labels:
-      - breaking
-      - breaking python
-  - title: ⚠️ Deprecations
-    labels: deprecation
-  - title: 🚀 Performance improvements
-    labels: performance
-  - title: ✨ Enhancements
-    labels: enhancement
-  - title: 🐞 Bug fixes
-    labels: fix
-  - title: 📖 Documentation
-    labels: documentation
-  - title: 📦 Build system
-    labels: build
-  - title: 🛠️ Other improvements
-    labels: internal
+  $CHANGES
+
+  Thank you to all our contributors for making this release possible!
+  $CONTRIBUTORS

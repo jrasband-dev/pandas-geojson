@@ -3,8 +3,12 @@ name: Release Drafter
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch: # This allows manual triggering
+
+permissions:
+  contents: write
+  pull-requests: read
 
 jobs:
   release-drafter:
@@ -16,5 +20,8 @@ jobs:
       - name: Release Drafter
         uses: release-drafter/release-drafter@v5
         with:
-          config-path: .github/release-drafter.yml
-          token: ${{ secrets.GITHUB_TOKEN }}
+          config-name: release-drafter.yml
+          disable-autolabeler: true
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

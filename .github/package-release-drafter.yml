@@ -1,0 +1,37 @@
+_extends: polars:.github/release-drafter.yml
+
+name-template: v$RESOLVED_VERSION
+tag-template: v$RESOLVED_VERSION
+
+include-labels:
+  - python
+
+version-resolver:
+  minor:
+    labels:
+      - breaking
+      - breaking python
+  default: patch
+
+
+template: |
+  - title: 🏆 Highlights
+    labels: highlight
+  - title: 💥 Breaking changes
+    labels:
+      - breaking
+      - breaking python
+  - title: ⚠️ Deprecations
+    labels: deprecation
+  - title: 🚀 Performance improvements
+    labels: performance
+  - title: ✨ Enhancements
+    labels: enhancement
+  - title: 🐞 Bug fixes
+    labels: fix
+  - title: 📖 Documentation
+    labels: documentation
+  - title: 📦 Build system
+    labels: build
+  - title: 🛠️ Other improvements
+    labels: internal
