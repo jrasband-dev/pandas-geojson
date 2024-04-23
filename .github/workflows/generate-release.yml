@@ -19,8 +19,6 @@ jobs:
   release-drafter:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
       - name: Release Drafter
         uses: release-drafter/release-drafter@v5
