@@ -2,7 +2,6 @@ _extends: jrasband-dev:.github/release-drafter.yml
 
 name-template: pandas-geojson $RESOLVED_VERSION
 tag-template: $RESOLVED_VERSION
-tag-prefix: 
 
 include-labels:
   - python
