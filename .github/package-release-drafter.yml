@@ -1,4 +1,4 @@
-_extends: jrasband-dev:.github/release-drafter.yml
+_extends: pandas-geojson:.github/release-drafter.yml
 
 name-template: pandas-geojson $RESOLVED_VERSION
 tag-template: v$RESOLVED_VERSION
