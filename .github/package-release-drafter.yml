@@ -9,8 +9,7 @@ include-labels:
 version-resolver:
   minor:
     labels:
-      - breaking
-      - breaking python
+      - enhancement
   default: patch
 
 
