@@ -5,6 +5,9 @@ import json
 
 @dataclass
 class Point:
+    '''
+    GeoJSON Compliant Point Geometry 
+    '''
     type: str = 'Point'
     geometry: List[float] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
@@ -33,6 +36,9 @@ class Point:
 
 @dataclass
 class MultiPoint:
+    '''
+    GeoJSON Compliant MultiPoint Geometry 
+    '''
     type: str = 'MultiPoint'
     geometry: List[List[float]] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
@@ -58,6 +64,9 @@ class MultiPoint:
 
 @dataclass
 class LineString:
+    '''
+    GeoJSON Compliant LineString Geometry 
+    '''
     type: str = 'LineString'
     geometry: List[List[float]] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
@@ -84,6 +93,9 @@ class LineString:
 
 @dataclass
 class MultiLineString:
+    '''
+    GeoJSON Compliant MultiLineString Geometry 
+    '''
     type: str = 'MultiLineString'
     geometry: List[List[List[float]]] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
@@ -115,6 +127,9 @@ class MultiLineString:
 
 @dataclass
 class Polygon:
+    '''
+    GeoJSON Compliant Polygon Geometry 
+    '''
     type: str = 'Polygon'
     geometry: List[List[List[float]]] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
@@ -146,6 +161,9 @@ class Polygon:
 
 @dataclass
 class MultiPolygon:
+    '''
+    GeoJSON Compliant MutliPolygon Geometry 
+    '''
     type: str = 'MultiPolygon'
     geometry: List[List[List[List[float]]]] = field(default_factory=list)
     properties: Dict[str, Any] = field(default_factory=dict)
