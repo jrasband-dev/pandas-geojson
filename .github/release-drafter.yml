@@ -11,7 +11,8 @@ version-resolver:
       - breaking python
   default: patch
 
-categories:
+
+template:
   - title: 🏆 Highlights
     labels: highlight
   - title: 💥 Breaking changes
