@@ -1,4 +1,4 @@
-_extends: polars:.github/release-drafter.yml
+_extends: jrasband-dev:.github/release-drafter.yml
 
 name-template: v$RESOLVED_VERSION
 tag-template: v$RESOLVED_VERSION
