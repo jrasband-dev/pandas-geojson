@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch: # This allows manual triggering
+    inputs:
+        # Latest commit to include with the release. If omitted, use the latest commit on the main branch.
+        sha:
+          description: Commit SHA
+          type: string
 
 permissions:
   contents: write
@@ -21,6 +26,7 @@ jobs:
         uses: release-drafter/release-drafter@v5
         with:
           config-name: release-drafter.yml
+          commitish: ${{ inputs.sha || github.sha }}
           disable-autolabeler: true
 
         env:
