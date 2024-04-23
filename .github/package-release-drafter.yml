@@ -7,7 +7,6 @@ version-resolver:
   minor:
     labels:
       - breaking
-      - breaking python
   default: patch
 
 
