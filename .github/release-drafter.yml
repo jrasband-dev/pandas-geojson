@@ -11,18 +11,10 @@ replacers:
 
 autolabeler:
 
-  - label: python
-    title:
-      # Example: feat(python): ...
-      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)(\(.*python.*\))?\!?\: /'
   - label: breaking
     title:
       # Example: feat!: ...
-      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)(\(.*\))?\!\: /'
-  - label: breaking python
-    title:
-      # Example: feat(python!): ...
-      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)\(.*python\!.*\)\: /'
+      - '/^(build|chore|ci|depr|docs|feat|fix|perf|refactor|release|test)(\(.*\))?\: /'
   - label: build
     title:
       - '/^build/'
