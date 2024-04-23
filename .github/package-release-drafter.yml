@@ -14,7 +14,7 @@ version-resolver:
   default: patch
 
 
-template: |
+template: 
   - title: 🏆 Highlights
     labels: highlight
   - title: 💥 Breaking changes
