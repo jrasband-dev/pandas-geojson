@@ -68,6 +68,19 @@ csv.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -193,6 +206,19 @@ df.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -962,7 +988,7 @@ Once you've filtered your GeoJSON object you can easily export it as a new GeoJS
 pdg.save_geojson(new_geojson,'Filtered.geojson',indent=4)
 ```
 
-## Create Empty GeoJSON
+## Creating GeoJSON
 
 How about creating a GeoJSON object from scratch? You can do this programmically through the package. Below is an example of how to create an empty GeoJSON object.
 
@@ -983,9 +1009,493 @@ geojson
 
 
 
+
+```python
+from pandas_geojson.core import Point
+point = Point(geometry=[-105.63012379499997, 32.971263161000024],properties={'ID':1})
+point
+```
+
+
+
+
+    {
+        "type": "Point",
+        "geometry": [
+            -105.63012379499997,
+            32.971263161000024
+        ],
+        "properties": {
+            "ID": 1
+        }
+    }
+
+
+
+
+```python
+from pandas_geojson.core import MultiPoint
+multipoint = MultiPoint(geometry=[[-105.63012379499997, 32.971263161000024], [-105.63012379499997, 32.971263161000024]])
+multipoint
+```
+
+
+
+
+    {
+        "type": "MultiPoint",
+        "geometry": [
+            [
+                -105.63012379499997,
+                32.971263161000024
+            ],
+            [
+                -105.63012379499997,
+                32.971263161000024
+            ]
+        ],
+        "properties": {}
+    }
+
+
+
+
+```python
+from pandas_geojson.core import LineString
+line = LineString(geometry=[[-105.63012379499997, 32.971263161000024],[-105.6,30.26]],properties={'ID':1})
+line
+
+```
+
+
+
+
+    {
+        "type": "LineString",
+        "geometry": [
+            [
+                -105.63012379499997,
+                32.971263161000024
+            ],
+            [
+                -105.6,
+                30.26
+            ]
+        ],
+        "properties": {
+            "ID": 1
+        }
+    }
+
+
+
+
+```python
+from pandas_geojson.core import MultiLineString
+multiline = MultiLineString(geometry=[[[-73.989, 40.752], [-74.008, 40.722], [-73.985, 40.706]],[[-73.987, 40.754], [-73.981, 40.743], [-73.974, 40.735]]],properties={'ID':1})
+multiline 
+```
+
+
+
+
+    {
+        "type": "MultiLineString",
+        "geometry": [
+            [
+                [
+                    -73.989,
+                    40.752
+                ],
+                [
+                    -74.008,
+                    40.722
+                ],
+                [
+                    -73.985,
+                    40.706
+                ]
+            ],
+            [
+                [
+                    -73.987,
+                    40.754
+                ],
+                [
+                    -73.981,
+                    40.743
+                ],
+                [
+                    -73.974,
+                    40.735
+                ]
+            ]
+        ],
+        "properties": {
+            "ID": 1
+        }
+    }
+
+
+
+
+```python
+from pandas_geojson.core import Polygon
+polygon = Polygon(geometry=[[-10.0, 10.0], [-10.0, -10.0], [10.0, -10.0], [10.0, 10.0], [-10.0, 10.0]]
+                    ,properties={'ID':1}
+                    )
+polygon 
+```
+
+
+
+
+    {
+        "type": "Polygon",
+        "geometry": [
+            [
+                -10.0,
+                10.0
+            ],
+            [
+                -10.0,
+                -10.0
+            ],
+            [
+                10.0,
+                -10.0
+            ],
+            [
+                10.0,
+                10.0
+            ],
+            [
+                -10.0,
+                10.0
+            ]
+        ],
+        "properties": {
+            "ID": 1
+        }
+    }
+
+
+
+
+```python
+from pandas_geojson.core import MultiPolygon
+multipolygon = MultiPolygon(geometry=[[[[-10.0, 10.0], [-10.0, -10.0], [10.0, -10.0], [10.0, 10.0], [-10.0, 10.0]]],[[[-20.0, 20.0], [-20.0, -20.0], [20.0, -20.0], [20.0, 20.0],[-20.0, 20.0]]]]
+                    ,properties={'ID':1}
+                    )
+multipolygon
+```
+
+
+
+
+    {
+        "type": "MultiPolygon",
+        "geometry": [
+            [
+                [
+                    [
+                        -10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        10.0
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        -20.0,
+                        20.0
+                    ],
+                    [
+                        -20.0,
+                        -20.0
+                    ],
+                    [
+                        20.0,
+                        -20.0
+                    ],
+                    [
+                        20.0,
+                        20.0
+                    ],
+                    [
+                        -20.0,
+                        20.0
+                    ]
+                ]
+            ]
+        ],
+        "properties": {
+            "ID": 1
+        }
+    }
+
+
+
 ## Adding Features
 
-Building on our blank GeoJSON object, we can add features to it using the `add_feature` function. Simply pass the Feature Type, and the coordinates. Optionally you can pass properties as a dictionary.
+You can add features to a GeoJSON object in two ways:
+* `add_features`: allows you to add previously created Feature objects in bulk. 
+* `add_feature`: allows you to add a single feature
+
+
+
+
+```python
+geojson.add_features([point, multipoint,line, multipoint,polygon,multipolygon])
+geojson
+```
+
+
+
+
+    {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Point",
+                "geometry": [
+                    -105.63012379499997,
+                    32.971263161000024
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "LineString",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.6,
+                        30.26
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "Polygon",
+                "geometry": [
+                    [
+                        -10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        10.0
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "Point",
+                "geometry": [
+                    -105.63012379499997,
+                    32.971263161000024
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "LineString",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.6,
+                        30.26
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "Polygon",
+                "geometry": [
+                    [
+                        -10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        10.0
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPolygon",
+                "geometry": [
+                    [
+                        [
+                            [
+                                -10.0,
+                                10.0
+                            ],
+                            [
+                                -10.0,
+                                -10.0
+                            ],
+                            [
+                                10.0,
+                                -10.0
+                            ],
+                            [
+                                10.0,
+                                10.0
+                            ],
+                            [
+                                -10.0,
+                                10.0
+                            ]
+                        ]
+                    ],
+                    [
+                        [
+                            [
+                                -20.0,
+                                20.0
+                            ],
+                            [
+                                -20.0,
+                                -20.0
+                            ],
+                            [
+                                20.0,
+                                -20.0
+                            ],
+                            [
+                                20.0,
+                                20.0
+                            ],
+                            [
+                                -20.0,
+                                20.0
+                            ]
+                        ]
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            }
+        ]
+    }
+
+
 
 
 ```python
@@ -999,6 +1509,226 @@ geojson
     {
         "type": "FeatureCollection",
         "features": [
+            {
+                "type": "Point",
+                "geometry": [
+                    -105.63012379499997,
+                    32.971263161000024
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "LineString",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.6,
+                        30.26
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "Polygon",
+                "geometry": [
+                    [
+                        -10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        10.0
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "Point",
+                "geometry": [
+                    -105.63012379499997,
+                    32.971263161000024
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "LineString",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.6,
+                        30.26
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPoint",
+                "geometry": [
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ],
+                    [
+                        -105.63012379499997,
+                        32.971263161000024
+                    ]
+                ],
+                "properties": {}
+            },
+            {
+                "type": "Polygon",
+                "geometry": [
+                    [
+                        -10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        -10.0
+                    ],
+                    [
+                        10.0,
+                        10.0
+                    ],
+                    [
+                        -10.0,
+                        10.0
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
+            {
+                "type": "MultiPolygon",
+                "geometry": [
+                    [
+                        [
+                            [
+                                -10.0,
+                                10.0
+                            ],
+                            [
+                                -10.0,
+                                -10.0
+                            ],
+                            [
+                                10.0,
+                                -10.0
+                            ],
+                            [
+                                10.0,
+                                10.0
+                            ],
+                            [
+                                -10.0,
+                                10.0
+                            ]
+                        ]
+                    ],
+                    [
+                        [
+                            [
+                                -20.0,
+                                20.0
+                            ],
+                            [
+                                -20.0,
+                                -20.0
+                            ],
+                            [
+                                20.0,
+                                -20.0
+                            ],
+                            [
+                                20.0,
+                                20.0
+                            ],
+                            [
+                                -20.0,
+                                20.0
+                            ]
+                        ]
+                    ]
+                ],
+                "properties": {
+                    "ID": 1
+                }
+            },
             {
                 "type": "Feature",
                 "geometry": {
@@ -1014,5 +1744,4 @@ geojson
             }
         ]
     }
-
 
